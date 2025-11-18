@@ -31,7 +31,7 @@ O objetivo é desenvolver uma landing page apresentando **oportunidades de traba
 
 ### Para Estudantes
 
-1. **Leia o arquivo `ATIVIDADE.md`** - Contém o checklist completo com todas as tarefas e requisitos
+1. **Leia o arquivo** [ATIVIDADE.md](ATIVIDADE.md) - Contém o checklist completo com todas as tarefas e requisitos
 2. **Analise os arquivos de exemplo** - `index.html` e `css/styles.css` servem como ponto de partida
 3. **Personalize e expanda** - Use sua criatividade para:
    - Pesquisar oportunidades reais do IFRN
