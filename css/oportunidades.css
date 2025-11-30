@@ -1,0 +1,436 @@
+/* ==================================== */
+/* 5. CSS com Flexbox & 5.1. Mobile-First */
+/* ==================================== */
+
+/* 5. Reset Básico e Variáveis */
+:root {
+    /* Paleta de Cores (Cores do IFRN adaptadas) */
+    --color-primary: #1e3a8a; /* Azul Escuro */
+    --color-secondary: #fcd34d; /* Amarelo/Ouro */
+    --color-accent: #dc2626; /* Vermelho/Destaque */
+    --color-text: #333;
+    --color-background: #f8fafc;
+    --color-white: #ffffff;
+    
+    /* Espaçamentos e Sombras */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Tipografia */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* Reset básico para melhor controle de layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+}
+
+/* Estilos de Tipografia Básica */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Classes Utilitárias (Flexbox) */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flex-center-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================================== */
+/* 2. Cabeçalho (Header) */
+/* ==================================== */
+.main-header {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-sm) 0;
+    position: sticky; /* Torna o header fixo */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.if-text {
+    color: var(--color-primary);
+}
+
+.rn-text {
+    color: var(--color-accent);
+}
+
+/* Menu de Navegação (Mobile: Menu Hambúrguer) */
+.main-nav {
+    /* Esconde o menu e o toggle em desktop */
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none; /* Esconde o checkbox */
+}
+
+.menu-icon {
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    cursor: pointer;
+    display: block; /* Visível em mobile */
+}
+
+.nav-menu {
+    display: none; /* Escondido por padrão em mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md) 0;
+    z-index: 999;
+}
+
+.menu-toggle:checked ~ .nav-menu {
+    display: flex; /* Mostra o menu quando o checkbox é marcado */
+}
+
+.nav-menu li a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ==================================== */
+/* 3. Seção Hero (Principal) */
+/* ==================================== */
+.hero-section {
+    background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('hero-bg.jpg'); /* Fundo fictício */
+    background-size: cover;
+    background-position: center;
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hero-content {
+    min-height: 40vh;
+}
+
+.hero-title {
+    color: var(--color-white);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+    max-width: 90%;
+}
+
+/* Estilo do Botão Principal (CTA) */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background-color: #eab308; /* Um pouco mais escuro */
+}
+
+/* ==================================== */
+/* 4. Seção de Oportunidades (Cards) */
+/* ==================================== */
+.opportunities-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.cards-grid {
+    display: flex;
+    flex-direction: column; /* Mobile-First: Cards empilhados verticalmente */
+    gap: var(--spacing-md);
+}
+
+.opportunity-card {
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.opportunity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.tag {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.tag-pesquisa {
+    background-color: var(--color-primary);
+}
+
+.tag-extensao {
+    background-color: var(--color-accent);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-description {
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1; /* Faz a descrição ocupar o espaço restante */
+}
+
+.requirements-box {
+    border-left: 3px solid var(--color-secondary);
+    padding-left: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.requirements-box h5 {
+    color: var(--color-text);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.requirements-list li {
+    font-size: 0.9rem;
+    margin-left: var(--spacing-md);
+    list-style-type: disc;
+    color: #666;
+}
+
+.btn-secondary {
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    text-align: center;
+    margin-top: auto; /* Alinha o botão na parte inferior */
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* ==================================== */
+/* 7. Footer */
+/* ==================================== */
+.main-footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-lg) 0 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Mobile-First: Empilhado */
+    gap: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+}
+
+.footer-content h4 {
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-content p, .footer-content a {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.contact-info p i {
+    margin-right: var(--spacing-sm);
+}
+
+.social-icons {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: var(--color-white);
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--color-secondary);
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #2e4a9e;
+    padding: var(--spacing-md) 0;
+    margin-top: var(--spacing-md);
+}
+
+/* ==================================== */
+/* 5.2. Tablet (768px - 1024px) */
+/* ==================================== */
+@media (min-width: 768px) {
+    
+    /* Header (Menu Horizontal) */
+    .menu-icon {
+        display: none; /* Esconde o ícone do hambúrguer */
+    }
+
+    .main-nav {
+        /* Garante que a nav esteja visível no desktop/tablet */
+        display: block;
+    }
+
+    .nav-menu {
+        display: flex; /* Mostra o menu em linha */
+        position: static;
+        flex-direction: row;
+        box-shadow: none;
+        padding: 0;
+        width: auto;
+    }
+
+    .nav-menu li a {
+        padding: 0 var(--spacing-md);
+        border-bottom: none;
+    }
+    
+    /* Cards (2 Colunas) */
+    .cards-grid {
+        flex-direction: row;
+        flex-wrap: wrap; /* Permite que os cards quebrem a linha */
+        justify-content: space-between;
+    }
+
+    .opportunity-card {
+        flex-basis: calc(50% - var(--spacing-sm)); /* 2 colunas com espaçamento entre elas */
+        /* flex-grow: 1; */
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+/* ==================================== */
+/* 5.3. Desktop (acima de 1024px) */
+/* ==================================== */
+@media (min-width: 1024px) {
+    
+    /* Tipografia e Espaçamentos */
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    /* Cards (3 Colunas) */
+    .opportunity-card {
+        flex-basis: calc(33.333% - (2 * var(--spacing-md) / 3)); /* 3 colunas com espaçamento */
+    }
+
+    /* Hover Effects avançados (desktop) */
+    .nav-menu li a:hover {
+        color: var(--color-accent);
+    }
+}
